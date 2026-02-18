@@ -1,0 +1,24 @@
+name: terraform-docs
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate module docs (informational)
+        uses: terraform-docs/gh-actions@v1.2.0
+        with:
+          working-dir: terraform/modules
+          output-method: inject
+          output-file: README.md
+          recursive: true
+
+      - name: Show git diff (non-blocking)
+        run: |
+          git status --porcelain
+          git diff --stat || true

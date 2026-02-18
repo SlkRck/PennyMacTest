@@ -1,0 +1,40 @@
+# Copy to terraform.tfvars and customize.
+
+aws_region  = "us-east-1"
+name_prefix = "pennymac-snap-cleaner"
+
+tags = {
+  Owner       = "RichardTaylor"
+  Environment = "exercise"
+}
+
+# Networking
+vpc_cidr = "10.42.0.0/16"
+
+availability_zones = [
+  "us-east-1a",
+  "us-east-1b"
+]
+
+private_subnet_cidrs = [
+  "10.42.1.0/24",
+  "10.42.2.0/24"
+]
+
+enable_vpc_endpoints = true
+
+# Lambda behavior
+retention_days     = 365
+dry_run            = true
+
+# Safer mode: only delete snapshots explicitly tagged for cleanup.
+# Leave delete_only_tagged = false to match "delete anything older than retention".
+delete_only_tagged = true
+delete_tag_key     = "ManagedBy"
+delete_tag_value   = "SnapshotCleaner"
+
+log_retention_days = 30
+
+# Scheduling (Bonus)
+enable_schedule      = true
+schedule_expression  = "rate(1 day)"

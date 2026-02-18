@@ -1,0 +1,58 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: terraform-fmt
+        name: terraform fmt
+        entry: scripts/precommit/terraform_fmt.sh
+        language: script
+        files: ^terraform/.*\.tf$
+
+      - id: terraform-validate
+        name: terraform validate
+        entry: scripts/precommit/terraform_validate.sh
+        language: script
+        files: ^terraform/.*\.tf$
+
+      - id: tflint
+        name: tflint
+        entry: scripts/precommit/tflint.sh
+        language: script
+        files: ^terraform/.*\.tf$
+
+      - id: tfsec
+        name: tfsec
+        entry: scripts/precommit/tfsec.sh
+        language: script
+        files: ^terraform/.*\.tf$
+
+      - id: checkov
+        name: checkov
+        entry: scripts/precommit/checkov.sh
+        language: script
+        files: ^terraform/.*\.tf$
+
+      - id: terraform-docs
+        name: terraform-docs
+        entry: scripts/precommit/terraform_docs.sh
+        language: script
+        files: ^terraform/modules/.*\.tf$
+
+      - id: infracost
+        name: infracost (optional)
+        entry: scripts/precommit/infracost.sh
+        language: script
+        files: ^terraform/.*\.tf$
+
+      - id: conftest
+        name: conftest (optional)
+        entry: scripts/precommit/conftest.sh
+        language: script
+        files: ^(terraform/|policy/).*

@@ -1,0 +1,22 @@
+name: infracost
+
+on:
+  pull_request:
+    paths:
+      - "terraform/**"
+
+jobs:
+  infracost:
+    if: ${{ secrets.INFRACOST_API_KEY != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Infracost
+        uses: infracost/actions/setup@v3
+        with:
+          api-key: ${{ secrets.INFRACOST_API_KEY }}
+
+      - name: Generate Infracost estimate (informational)
+        run: |
+          infracost breakdown --path terraform --format table

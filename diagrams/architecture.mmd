@@ -1,0 +1,27 @@
+flowchart TB
+  %% PennyMac Technical Exercise Architecture
+  subgraph VPC[Amazon VPC]
+    subgraph PrivateSubnet[Private Subnet]
+      Lambda[AWS Lambda\nSnapshot Cleanup]
+    end
+
+    SG[Security Group\n(Egress)]
+    Lambda --- SG
+
+    subgraph VPCEndpoints[VPC Endpoints]
+      EP_EC2[Interface Endpoint\nEC2 API]
+      EP_LOGS[Interface Endpoint\nCloudWatch Logs]
+      EP_STS[Interface Endpoint\nSTS (optional)]
+    end
+
+    Lambda --> EP_EC2
+    Lambda --> EP_LOGS
+    Lambda --> EP_STS
+  end
+
+  EventBridge[EventBridge Rule\nSchedule: daily] --> Lambda
+  CWLogs[CloudWatch Logs\nLog Group] <-- EP_LOGS
+  EC2API[EC2 Service\nDescribeSnapshots/DeleteSnapshot] <-- EP_EC2
+
+  classDef aws fill:#fff,stroke:#333,stroke-width:1px;
+  class VPC,PrivateSubnet,Lambda,SG,VPCEndpoints,EP_EC2,EP_LOGS,EP_STS,EventBridge,CWLogs,EC2API aws;

@@ -1,0 +1,4 @@
+# tfsec config (optional)
+# https://aquasecurity.github.io/tfsec/latest/guides/configuration/config/
+severity_overrides: {}
+exclude: []

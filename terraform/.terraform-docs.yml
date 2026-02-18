@@ -1,0 +1,16 @@
+formatter: markdown
+output:
+  file: README.md
+  mode: inject
+sections:
+  show:
+    - providers
+    - modules
+    - resources
+    - inputs
+    - outputs
+sort:
+  enabled: true
+settings:
+  anchor: true
+  color: true

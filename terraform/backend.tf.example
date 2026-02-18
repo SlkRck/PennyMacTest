@@ -1,0 +1,17 @@
+// Optional: Remote state backend (S3 + DynamoDB locking)
+//
+// For an interview exercise, reviewers often prefer local state by default.
+// If you want remote state, copy this file to backend.tf and replace placeholders:
+//
+//   cp backend.tf.example backend.tf
+//   terraform init -reconfigure
+//
+terraform {
+  backend "s3" {
+    bucket         = "REPLACE_ME_STATE_BUCKET"
+    key            = "pennymac-snapshot-cleaner/terraform.tfstate"
+    region         = "REPLACE_ME_REGION"
+    dynamodb_table = "REPLACE_ME_LOCK_TABLE"
+    encrypt        = true
+  }
+}

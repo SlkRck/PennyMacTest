@@ -1,0 +1,2 @@
+# Lambda runtime includes boto3/botocore by default.
+# Keep this file for completeness / future dependencies.

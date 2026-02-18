@@ -1,0 +1,6 @@
+# Checkov configuration
+# https://www.checkov.io/2.Basics/CLI%20Command%20Reference.html
+quiet: true
+framework:
+  - terraform
+soft_fail: false
