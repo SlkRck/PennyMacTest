@@ -1,7 +1,7 @@
-# Copilot / AI Agent Instructions — pennymac-snapshot-cleaner
+# Instructions — pennymac-snapshot-cleaner
 
 Purpose
-- Help contributors and AI agents understand the repository quickly and make safe, minimal changes.
+- Help contributors understand the repository quickly and make safe, minimal changes.
 
 Big picture
 - This small project provides an AWS Lambda that deletes EC2 snapshots older than a retention window.

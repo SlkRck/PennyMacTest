@@ -1,4 +1,4 @@
-# Interviewer review simulation (likely questions)
+# Explanations
 
 ## “Why no NAT Gateway?”
 Because the Lambda only needs AWS API access, interface endpoints (EC2/Logs/STS) are a tighter, cheaper pattern that keeps traffic on the AWS network.
