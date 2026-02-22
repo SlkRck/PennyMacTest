@@ -109,19 +109,3 @@ pip install -r requirements-dev.txt
 pytest -q
 ```
 
-## Publish to GitHub (submission)
-Use the included bootstrap script to create and push the repository using **your** GitHub CLI session:
-
-```powershell
-gh auth login
-./scripts/New-ExerciseRepo.ps1 -RepoName "pennymac-snapshot-cleaner" -Private:$false
-```
-
-It prints the repo URL you can submit to the interviewers.
-
-## Interview collateral
-See `docs/interview/` for:
-- a 2-minute executive summary
-- a 5-minute architecture walkthrough script
-- common reviewer questions + ideal answers
-- talking points on security and design decisions
