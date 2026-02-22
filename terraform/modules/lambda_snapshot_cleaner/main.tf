@@ -72,8 +72,8 @@ data "aws_iam_policy_document" "logs" {
 # EC2 snapshot permissions
 data "aws_iam_policy_document" "ec2" {
   statement {
-    sid     = "DescribeSnapshots"
-    effect  = "Allow"
+    sid    = "DescribeSnapshots"
+    effect = "Allow"
     actions = [
       "ec2:DescribeSnapshots",
       "ec2:DescribeTags"
@@ -82,9 +82,9 @@ data "aws_iam_policy_document" "ec2" {
   }
 
   statement {
-    sid     = "DeleteSnapshots"
-    effect  = "Allow"
-    actions = ["ec2:DeleteSnapshot"]
+    sid       = "DeleteSnapshots"
+    effect    = "Allow"
+    actions   = ["ec2:DeleteSnapshot"]
     resources = ["*"]
 
     dynamic "condition" {
@@ -183,11 +183,11 @@ resource "aws_lambda_function" "this" {
 
   environment {
     variables = {
-      RETENTION_DAYS      = tostring(var.retention_days)
-      DRY_RUN             = tostring(var.dry_run)
-      DELETE_ONLY_TAGGED  = tostring(var.delete_only_tagged)
-      DELETE_TAG_KEY      = var.delete_tag_key
-      DELETE_TAG_VALUE    = var.delete_tag_value
+      RETENTION_DAYS     = tostring(var.retention_days)
+      DRY_RUN            = tostring(var.dry_run)
+      DELETE_ONLY_TAGGED = tostring(var.delete_only_tagged)
+      DELETE_TAG_KEY     = var.delete_tag_key
+      DELETE_TAG_VALUE   = var.delete_tag_value
     }
   }
 

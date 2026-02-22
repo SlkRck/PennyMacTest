@@ -17,29 +17,29 @@ module "network" {
 module "snapshot_cleaner" {
   source = "./modules/lambda_snapshot_cleaner"
 
-  name_prefix         = var.name_prefix
-  tags                = local.common_tags
-  aws_region          = var.aws_region
+  name_prefix = var.name_prefix
+  tags        = local.common_tags
+  aws_region  = var.aws_region
 
-  vpc_id              = module.network.vpc_id
-  private_subnet_ids  = module.network.private_subnet_ids
+  vpc_id             = module.network.vpc_id
+  private_subnet_ids = module.network.private_subnet_ids
 
-  retention_days      = var.retention_days
-  dry_run             = var.dry_run
+  retention_days = var.retention_days
+  dry_run        = var.dry_run
 
-  delete_only_tagged  = var.delete_only_tagged
-  delete_tag_key      = var.delete_tag_key
-  delete_tag_value    = var.delete_tag_value
+  delete_only_tagged = var.delete_only_tagged
+  delete_tag_key     = var.delete_tag_key
+  delete_tag_value   = var.delete_tag_value
 
-  log_retention_days  = var.log_retention_days
+  log_retention_days = var.log_retention_days
 }
 
 module "schedule" {
   source = "./modules/schedule"
   count  = var.enable_schedule ? 1 : 0
 
-  name_prefix         = var.name_prefix
-  tags                = local.common_tags
+  name_prefix = var.name_prefix
+  tags        = local.common_tags
 
   schedule_expression = var.schedule_expression
   lambda_arn          = module.snapshot_cleaner.lambda_arn

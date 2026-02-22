@@ -152,7 +152,7 @@ data "archive_file" "lambda_zip" {
 # Lambda Function
 # -----------------------------
 resource "aws_lambda_function" "snapshot_cleaner" {
-  function_name = "${var.name_prefix}"
+  function_name = var.name_prefix
   role          = aws_iam_role.lambda.arn
   handler       = "handler.lambda_handler"
   runtime       = "python3.12"
@@ -170,9 +170,9 @@ resource "aws_lambda_function" "snapshot_cleaner" {
 
   environment {
     variables = {
-      RETENTION_DAYS  = tostring(var.retention_days)
-      SNAPSHOT_OWNER  = "self"
-      DRY_RUN         = tostring(var.dry_run)
+      RETENTION_DAYS = tostring(var.retention_days)
+      SNAPSHOT_OWNER = "self"
+      DRY_RUN        = tostring(var.dry_run)
     }
   }
 
