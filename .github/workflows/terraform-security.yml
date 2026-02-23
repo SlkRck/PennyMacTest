@@ -23,7 +23,17 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_wrapper: false
-
+      - name: Debug workspace (pre-fmt)
+        working-directory: terraform
+        run: |
+          echo "PWD=$(pwd)"
+          terraform version
+          ls -la
+          echo "---- Terraform files ----"
+          find . -maxdepth 3 -type f \( -name "*.tf" -o -name "*.tfvars" \) -print
+          echo "---- fmt check (verbose) ----"
+          terraform fmt -check -recursive -list=true
+          
       - name: Terraform fmt (check)
         run: terraform fmt -check -recursive
 
