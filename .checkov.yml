@@ -3,4 +3,4 @@
 quiet: true
 framework:
   - terraform
-soft_fail: false
+soft-fail: false
