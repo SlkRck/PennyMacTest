@@ -19,7 +19,7 @@ module "snapshot_cleaner" {
 
   name_prefix = var.name_prefix
   tags        = local.common_tags
-  aws_region  = var.aws_region
+  # aws_region  = var.aws_region
 
   vpc_id             = module.network.vpc_id
   private_subnet_ids = module.network.private_subnet_ids
