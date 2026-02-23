@@ -6,7 +6,7 @@ plugin "aws" {
 
 config {
   format = "compact"
-  module = true
+  call_module = "all"
   force = false
 }
 
