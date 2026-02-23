@@ -65,7 +65,11 @@ data "aws_iam_policy_document" "logs" {
       "logs:PutLogEvents",
       "logs:DescribeLogStreams"
     ]
-    resources = ["*"]
+
+      # Scope to this function's log group
+    resources = [
+      "${aws_cloudwatch_log_group.lambda.arn}:*"
+    ]
   }
 }
 
@@ -75,8 +79,8 @@ data "aws_iam_policy_document" "ec2" {
     sid    = "DescribeSnapshots"
     effect = "Allow"
     actions = [
-      "ec2:DescribeSnapshots",
-      "ec2:DescribeTags"
+      "ec2:DescribeSnapshots"
+      
     ]
     resources = ["*"]
   }
